@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Banco {
 	private BigDecimal valor;
+	private Categorias categoria;
 	private ContaMagica conta;
 	private CadastroContas cadastro;
 	
@@ -24,11 +25,16 @@ public class Banco {
 	}
 
 	public void depositar(String nomeCliente, BigDecimal valor) {
-		if (valor.compareTo(BigDecimal.ZERO) <= 0) {
+		if (valor.compareTo(BigDecimal.ZERO) >= 0) {
 		conta = cadastro.pesquisar(nomeCliente);
 		conta.deposito(valor);
 		}
 		else throw new IllegalArgumentException("Valor inválido.");
+	}
+	
+	public Categorias status(String nomeCliente) {
+		Categorias status = cadastro.pesquisar(nomeCliente).getStatus();
+		return status;
 	}
 
 	public void sacar(String nomeCliente, BigDecimal valor) {

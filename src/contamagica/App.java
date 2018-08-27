@@ -35,7 +35,7 @@ public class App {
 				banco.criarConta(contaNova);
 
 				System.out.println("Olá, " + name);
-				System.out.println("Seu saldo inicial é R$" + conta1.getSaldo() + "\n");
+				System.out.println("Seu saldo inicial é R$" + conta1.getSaldo() + ". Categoria"+ conta1.getStatus() +"\n");
 
 				banco.menuInicial();
 				option = in.nextInt();
@@ -63,7 +63,8 @@ public class App {
 					case 3:
 						BigDecimal saldo;
 						saldo = banco.consultarSaldo(nomeCliente);
-						System.out.println("Seu saldo é R$" + saldo + "\n");
+						Categorias status = banco.status(nomeCliente);
+						System.out.println("Seu saldo é R$" + saldo + "\nSua categoria é " + status +"\n" );
 						break;
 
 					case 4:
