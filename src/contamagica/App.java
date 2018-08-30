@@ -23,9 +23,6 @@ public class App {
 		option = in.nextInt();
 
 		while (option != 0) {
-			// if(option == 0) {
-			// System.out.println("||| Acesso encerrado |||");
-			// }
 
 			if (option == 1) {
 				System.out.println("Criar uma conta == Digite seu nome:");

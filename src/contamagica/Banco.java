@@ -40,7 +40,7 @@ public class Banco {
 	public void sacar(String nomeCliente, BigDecimal valor) {
 		conta = cadastro.pesquisar(nomeCliente);
 		BigDecimal saldoAtual = conta.getSaldo();
-		if (valor.compareTo(saldoAtual) >= 0) {
+		if (valor.compareTo(saldoAtual) <= 0) {
 		conta.retirada(valor);
 		} 
 		else throw new IllegalArgumentException("Saldo insuficiente.");

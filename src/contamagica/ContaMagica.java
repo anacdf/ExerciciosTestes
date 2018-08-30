@@ -23,12 +23,15 @@ public class ContaMagica {
 		 BigDecimal gold = new BigDecimal(50000);
 		 BigDecimal platinum = new BigDecimal(200000);
 		 if (saldo.compareTo(platinum)>=0) {
-			 return Categorias.Silver;
+			 return Categorias.Platinum;
 		 }
 		 if (saldo.compareTo(gold)>=0) {
 			 return Categorias.Gold;
 		 }
-		 else return Categorias.Silver;
+		 if (saldo.compareTo(silver)<=0) {
+			 return Categorias.Silver;
+		 }
+		 return null;
 	 }
 	 
 	 public void deposito(BigDecimal valor) {
