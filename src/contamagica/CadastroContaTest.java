@@ -1,6 +1,9 @@
 package contamagica;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,61 +15,45 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class CadastroContaTest {
-
+	static CadastroContasDuble cadastro;
+	static BigDecimal saldo;
+	static ContaMagicaDuble conta;
+	
 	@BeforeAll
 	public static void SetUp() {
-		CadastroContas cadastro = new CadastroContas();
-		BigDecimal saldo = new BigDecimal(10);
-		ContaMagica conta = new ContaMagica("Teste", saldo);
+		cadastro = new CadastroContasDuble();
+		saldo = new BigDecimal(10);
+		conta = new ContaMagicaDuble("Teste", saldo);
+		
 		cadastro.insereConta(conta);
 	}
 	
 	@Test
 	public void insereContaTest() {
-		CadastroContas cadastro = new CadastroContas();
-		BigDecimal saldo = new BigDecimal(10);
-		ContaMagica conta1 = new ContaMagica("Teste1", saldo);
-		cadastro.insereConta(conta1);
-		assertEquals(conta1, cadastro.pesquisar("Teste1"));
+		cadastro.insereConta(conta);
+		assertEquals(conta, cadastro.pesquisar("Teste"));
 	}
 	
 	@Test
 	public void removeContaTest() {
-		CadastroContas cadastro = new CadastroContas();
-		BigDecimal saldo = new BigDecimal(10);
-		ContaMagica conta1 = new ContaMagica("Teste1", saldo);
-		cadastro.insereConta(conta1);
-		cadastro.removeConta("Teste1");
-		assertTrue(true);
+		cadastro.removeConta("Teste");
+		assertEquals(1, cadastro.size());
 	}
 	
 	@Test
 	public void removeContaFalseTest() {
-		CadastroContas cadastro = new CadastroContas();
-		BigDecimal saldo = new BigDecimal(10);
-		ContaMagica conta1 = new ContaMagica("Teste1", saldo);
-		cadastro.insereConta(conta1);
 		cadastro.removeConta("XYZ");
 		assertFalse(false);
 	}
 	
 	@Test
 	public void pesquisarTest() {
-		CadastroContas cadastro = new CadastroContas();
-		BigDecimal saldo = new BigDecimal(10);
-		ContaMagica conta2 = new ContaMagica("Teste2", saldo);
-		cadastro.insereConta(conta2);
-		ContaMagica pesquisa = cadastro.pesquisar("Teste2");
-
-		assertEquals(conta2.toString(), pesquisa.toString());
+		cadastro.pesquisar("Teste");
+		assertEquals(conta, cadastro.pesquisar("Teste"));
 	} 
 	
 	@Test
 	public void pesquisarNullTest() {
-	CadastroContas cadastro = new CadastroContas();
-	BigDecimal saldo = new BigDecimal(10);
-	ContaMagica conta1 = new ContaMagica("Teste1", saldo);
-	cadastro.insereConta(conta1);
 		cadastro.pesquisar("XYZ");
 		assertNull(null);
 	} 

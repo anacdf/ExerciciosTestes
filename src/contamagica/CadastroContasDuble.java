@@ -2,14 +2,19 @@ package contamagica;
 
 import java.util.ArrayList;
 
-public class CadastroContas {
-	private ArrayList<ContaMagica> lista;
+public class CadastroContasDuble extends CadastroContas {
+	private ArrayList<ContaMagicaDuble> lista;
 	
-	public CadastroContas() {
+	public CadastroContasDuble() {
 		lista = new ArrayList<>();
 	}
 	
-	public void insereConta(ContaMagica conta) {
+	public int size() {
+		int size;
+		return size = lista.size();
+	}
+	
+	public void insereConta(ContaMagicaDuble conta) {
 		lista.add(conta);
 	}
 	
@@ -22,8 +27,8 @@ public class CadastroContas {
 		} return false;
 	}
 	
-	public ContaMagica pesquisar(String nome) {
-		ContaMagica x;
+	public ContaMagicaDuble pesquisar(String nome) {
+		ContaMagicaDuble x;
 		for (int i=0; i<lista.size(); i++) {
 			if (nome.equals(lista.get(i).getNomeCliente())) {
 				return x=lista.get(i);

@@ -4,25 +4,28 @@ import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 
+import org.junit.After;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class ContaMagicaTest {
+	static ContaMagicaDuble target;
+	static BigDecimal valor = new BigDecimal(1);
 	
 	@Test
-	public void retirarTest(){
-	ContaMagica target = new ContaMagica("Fulano", new BigDecimal(100));
-	target.deposito(new BigDecimal(5000));
-	target.retirada(new BigDecimal(1000));
-	assertEquals(new BigDecimal(4100),target.getSaldo());
+	public void depositarTest(){
+		target = new ContaMagicaDuble("Fulano", valor);
+		target.deposito(new BigDecimal("10"));
+	assertEquals(new BigDecimal("11"), target.getSaldo());
 	}
 
 	@Test
-	public void depositarTest(){
-	ContaMagica target = new ContaMagica("Fulano", new BigDecimal(100));
-	target.deposito(new BigDecimal(100));
-	target.deposito(new BigDecimal(100));
-	assertEquals(new BigDecimal(300), target.getSaldo());
+	public void retirarTest(){
+		target = new ContaMagicaDuble("Fulano", valor);
+		target.retirada(new BigDecimal("1"));
+	assertEquals(new BigDecimal(0),target.getSaldo());
 	}
-	
+
+
 }

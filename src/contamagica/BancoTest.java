@@ -14,20 +14,20 @@ import org.junit.jupiter.api.Test;
 class BancoTest {
 	static BancoDuble banco;
 	static BigDecimal valor;
-	static ContaMagica conta;
+	static ContaMagicaDuble conta;
 
 	@BeforeAll
 	public static void setUp() {
 		banco = new BancoDuble();
 		valor = new BigDecimal("10");
-		conta = new ContaMagica("Fulano", valor);
+		conta = new ContaMagicaDuble("Fulano", valor);
 		banco.criarConta(conta);
 	}
 	
 	@AfterEach
 	public void afterTest() {
 		banco.encerrarConta("Fulano");
-		conta = new ContaMagica("Fulano", valor);
+		conta = new ContaMagicaDuble("Fulano", valor);
 		banco.criarConta(conta);
 	}
 	

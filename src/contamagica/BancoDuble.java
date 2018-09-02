@@ -5,14 +5,14 @@ import java.math.BigDecimal;
 public class BancoDuble extends Banco {
 	private BigDecimal valor;
 	private Categorias categoria;
-	private ContaMagica conta;
-	private CadastroContas cadastro;
+	private ContaMagicaDuble conta;
+	private CadastroContasDuble cadastro;
 	
 	public BancoDuble() {
-		cadastro = new CadastroContas();
+		cadastro = new CadastroContasDuble();
 	}
 
-	public void criarConta(ContaMagica novaConta) {
+	public void criarConta(ContaMagicaDuble novaConta) {
 		cadastro.insereConta(novaConta);
 	}
 	
