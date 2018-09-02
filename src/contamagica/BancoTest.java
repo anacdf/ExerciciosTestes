@@ -6,37 +6,45 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BancoTest {
+	static BancoDuble banco;
+	static BigDecimal valor;
+	static ContaMagica conta;
 
+	@BeforeAll
+	public static void setUp() {
+		banco = new BancoDuble();
+		valor = new BigDecimal("10");
+		conta = new ContaMagica("Fulano", valor);
+		banco.criarConta(conta);
+	}
+	
+	@AfterEach
+	public void afterTest() {
+		banco.encerrarConta("Fulano");
+		conta = new ContaMagica("Fulano", valor);
+		banco.criarConta(conta);
+	}
+	
 	@Test
 	public void criarContaTest() {
-		Banco banco = new Banco();
-		BigDecimal valor = new BigDecimal("10");
-		ContaMagica conta = new ContaMagica("Fulano", valor);
 		banco.criarConta(conta);
-
 		assertTrue(true);
 	}
 
 	@Test
 	public void contaExisteTest() {
-		Banco banco = new Banco();
-		BigDecimal valor = new BigDecimal("10");
-		ContaMagica conta = new ContaMagica("Fulano", valor);
-		banco.criarConta(conta);
-		assertTrue(banco.contaExiste("Fulano"));
+		banco.contaExiste("Fulano");
+		assertTrue(true);
 	}
 
 	@Test
 	public void depositarTest() {
-		Banco banco = new Banco();
-		BigDecimal valor = new BigDecimal("10");
-		ContaMagica conta = new ContaMagica("Fulano", valor);
-		banco.criarConta(conta);
 		banco.depositar("Fulano", valor);
 		BigDecimal valorTeste = new BigDecimal("20");
 
@@ -46,50 +54,35 @@ class BancoTest {
 	@Test
 	public void depositarExceptionTest() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			Banco banco = new Banco();
 			BigDecimal valor = new BigDecimal("-1");
-			ContaMagica conta = new ContaMagica("Fulano", valor);
-			banco.criarConta(conta);
 			banco.depositar("Fulano", valor);
 		});
 	}
 
 	@Test
 	public void statusSilverTest() {
-		Banco banco = new Banco();
-		BigDecimal valor = new BigDecimal("10");
-		ContaMagica conta = new ContaMagica("Fulano", valor);
-		banco.criarConta(conta);
-
+		banco.depositar("Fulano", valor);
 		assertEquals(Categorias.Silver, banco.status("Fulano"));
 	}
 
 	@Test
 	public void statusGoldTest() {
-		Banco banco = new Banco();
-		BigDecimal valor = new BigDecimal("50001");
-		ContaMagica conta = new ContaMagica("Fulano", valor);
-		banco.criarConta(conta);
+		BigDecimal valorGold = new BigDecimal("50000");
+		banco.depositar("Fulano", valorGold);
 
 		assertEquals(Categorias.Gold, banco.status("Fulano"));
 	}
 
 	@Test
 	public void statusPlatinumTest() {
-		Banco banco = new Banco();
-		BigDecimal valor = new BigDecimal("200001");
-		ContaMagica conta = new ContaMagica("Fulano", valor);
-		banco.criarConta(conta);
+		BigDecimal valorPlatinum = new BigDecimal("200000");
+		banco.depositar("Fulano", valorPlatinum);
 
 		assertEquals(Categorias.Platinum, banco.status("Fulano"));
 	}
 
 	@Test
 	public void sacarTest() {
-		Banco banco = new Banco();
-		BigDecimal valor = new BigDecimal("10");
-		ContaMagica conta = new ContaMagica("Fulano", valor);
-		banco.criarConta(conta);
 		BigDecimal valorTeste = new BigDecimal("5");
 		banco.sacar("Fulano", valorTeste);
 
@@ -99,10 +92,6 @@ class BancoTest {
 	@Test
 	public void sacarExceptionTest() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			Banco banco = new Banco();
-			BigDecimal valor = new BigDecimal("10");
-			ContaMagica conta = new ContaMagica("Fulano", valor);
-			banco.criarConta(conta);
 			BigDecimal valorTeste = new BigDecimal("20");
 			banco.sacar("Fulano", valorTeste);
 		});
@@ -110,10 +99,6 @@ class BancoTest {
 
 	@Test
 	public void consultarSaldoTest() {
-		Banco banco = new Banco();
-		BigDecimal valor = new BigDecimal("10");
-		ContaMagica conta = new ContaMagica("Fulano", valor);
-		banco.criarConta(conta);
 		BigDecimal valorTeste = new BigDecimal("10");
 
 		assertEquals(valorTeste, conta.getSaldo());
@@ -121,10 +106,6 @@ class BancoTest {
 
 	@Test
 	public void encerrarContaTest() {
-		Banco banco = new Banco();
-		BigDecimal valor = new BigDecimal("10");
-		ContaMagica conta = new ContaMagica("Fulano", valor);
-		banco.criarConta(conta);
 		banco.encerrarConta("Fulano");
 
 		assertEquals(false, banco.contaExiste("Fulano"));
