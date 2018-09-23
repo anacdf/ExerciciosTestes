@@ -2,14 +2,14 @@ package contamagica;
 
 import java.util.ArrayList;
 
-public class CadastroContas {
-	private ArrayList<ContaMagica> lista;
+public class CadastroContas implements CadastroContasInterface{
+	private ArrayList<ContaMagicaInterface> lista;
 	
 	public CadastroContas() {
 		lista = new ArrayList<>();
 	}
 	
-	public void insereConta(ContaMagica conta) {
+	public void insereConta(ContaMagicaInterface conta) {
 		lista.add(conta);
 	}
 	
@@ -22,12 +22,16 @@ public class CadastroContas {
 		} return false;
 	}
 	
-	public ContaMagica pesquisar(String nome) {
-		ContaMagica x;
+	public ContaMagicaInterface pesquisar(String nome) {
+		ContaMagicaInterface x;
 		for (int i=0; i<lista.size(); i++) {
 			if (nome.equals(lista.get(i).getNomeCliente())) {
 				return x=lista.get(i);
 			}
 		}return null;
+	}
+
+	public int size() {
+		return lista.size();
 	}
 }

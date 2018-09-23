@@ -8,14 +8,14 @@ import java.util.Scanner;
 public class Banco {
 	private BigDecimal valor;
 	private Categorias categoria;
-	private ContaMagica conta;
+	private ContaMagicaInterface conta;
 	private CadastroContas cadastro;
 	
 	public Banco() {
 		cadastro = new CadastroContas();
 	}
 
-	public void criarConta(ContaMagica novaConta) {
+	public void criarConta(ContaMagicaInterface novaConta) {
 		cadastro.insereConta(novaConta);
 	}
 	

@@ -1,4 +1,4 @@
-package contamagica;
+package tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -11,14 +11,17 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import contamagica.Banco;
+import contamagica.Categorias;
+
 class BancoTest {
-	static BancoDuble banco;
+	static Banco banco;
 	static BigDecimal valor;
 	static ContaMagicaDuble conta;
 
 	@BeforeAll
 	public static void setUp() {
-		banco = new BancoDuble();
+		banco = new Banco();
 		valor = new BigDecimal("10");
 		conta = new ContaMagicaDuble("Fulano", valor);
 		banco.criarConta(conta);

@@ -1,4 +1,4 @@
-package contamagica;
+package tests;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -14,14 +14,16 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import contamagica.CadastroContas;
+
 public class CadastroContaTest {
-	static CadastroContasDuble cadastro;
+	static CadastroContas cadastro;
 	static BigDecimal saldo;
 	static ContaMagicaDuble conta;
 	
 	@BeforeAll
 	public static void SetUp() {
-		cadastro = new CadastroContasDuble();
+		cadastro = new CadastroContas();
 		saldo = new BigDecimal(10);
 		conta = new ContaMagicaDuble("Teste", saldo);
 		

@@ -3,7 +3,7 @@ package contamagica;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-public class ContaMagica {
+public class ContaMagica implements ContaMagicaInterface {
 	private String nome;
 	private BigDecimal saldo;
 	private Categorias status;
@@ -13,10 +13,10 @@ public class ContaMagica {
 		 this.saldo = saldo;
 	 }
 	 public String getNomeCliente() {
-		 return nome;
+		 return this.nome;
 	 }
 	 public BigDecimal getSaldo() {
-		 return saldo;
+		 return this.saldo;
 	 }
 	 public Categorias getStatus() {
 		 BigDecimal silver = new BigDecimal(49999);
@@ -35,18 +35,21 @@ public class ContaMagica {
 	 }
 	 
 	 public void deposito(BigDecimal valor) {
-		 BigDecimal goldPercent = new BigDecimal("0.01");
-		 BigDecimal platinumPercent = new BigDecimal("0.025");
-		 if(getStatus()==Categorias.Gold) {
-			 valor.multiply(goldPercent);
-			 this.saldo = saldo.add(valor);
+		 BigDecimal goldPercent = new BigDecimal(0.01);
+		 BigDecimal platinumPercent = new BigDecimal(0.025);
+		 
+		 if(this.getSaldo().compareTo(new BigDecimal(50000))>=0) {
+			BigDecimal acrescimo = valor.multiply(goldPercent);
+			this.saldo = valor.add(acrescimo); 
 		 }
-		 if (getStatus()==Categorias.Platinum) {
-			 valor.multiply(platinumPercent);
-			 this.saldo = saldo.add(valor);
+		 if (this.getSaldo().compareTo(new BigDecimal(200000))>=0) {
+			 BigDecimal acrescimo = valor.multiply(platinumPercent);
+			 this.saldo = valor.add(acrescimo); 
+		 } 
+		 
+		 else if (this.getSaldo().compareTo(new BigDecimal(49999))<=0) {
+			 this.saldo = saldo.add(valor); 
 		 }
-		 else
-			 this.saldo = saldo.add(valor);
 	 }
 	 
 	 public void retirada(BigDecimal valor) {

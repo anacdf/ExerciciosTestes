@@ -1,18 +1,21 @@
-package contamagica;
+package tests;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-public class ContaMagicaDuble extends ContaMagica{
+import contamagica.Categorias;
+import contamagica.ContaMagica;
+import contamagica.ContaMagicaInterface;
+
+public class ContaMagicaDuble implements ContaMagicaInterface{
 	private String nome;
 	private BigDecimal saldo;
 	private Categorias status;
 
 	
 	 public ContaMagicaDuble(String nome, BigDecimal saldo) {
-		super(nome, saldo);
-		this.nome = super.getNomeCliente();
-		this.saldo = super.getSaldo();
+		this.nome = nome;
+		this.saldo = saldo;
 		 
 	 }
 	 public String getNomeCliente() {
